@@ -16,6 +16,7 @@ body {
     padding: 25px;
     gap: 25px;
     background-color: deepskyblue;
+    flex-shrink: 1;
 }
 
 .row {
@@ -24,6 +25,7 @@ body {
     justify-content: space-evenly;
     flex: 1 1 auto;
     gap: 25px;
+    flex-shrink: 1;
 }
 
 button {
@@ -33,4 +35,15 @@ button {
 label {
     flex: 1 1 auto;
     background-color: lightgray;
+    text-align: end;
+    position: relative;
+    vertical-align: bottom;
+}
+
+label span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 30px;
+    font-size: 4.5em;
 }
