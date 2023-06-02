@@ -1,0 +1,36 @@
+* {
+    border: 2px solid black;
+}
+
+body {
+    display: flex;
+}
+
+#calc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 400px;
+    height: 600px;
+    flex: 0 1 auto;
+    padding: 25px;
+    gap: 25px;
+    background-color: deepskyblue;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex: 1 1 auto;
+    gap: 25px;
+}
+
+button {
+    flex: 1 1 auto;
+}
+
+label {
+    flex: 1 1 auto;
+    background-color: lightgray;
+}
