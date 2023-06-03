@@ -29,7 +29,7 @@ label, button, #calc {
     flex: 1 1 auto;
     gap: 25px;
     flex-shrink: 1;
-    height: 30px
+    height: 10px
 }
 
 button {
