@@ -1,8 +1,7 @@
 let leftNum;
 let rightNum;
 let operator;
-let opSet = false;
-let rightStarted = false;
+let state = "init"
 
 const display = document.querySelector("#display");
 
@@ -27,12 +26,17 @@ function subtract(a,b) { return a - b; }
 function multiply(a,b) { return a * b; }
 function divide(a,b) { 
     if(b===0)
-        return "Divide by zero"
+        return "Div by zero"
     return a / b; 
+}
+
+function getState() {
+    return state;
 }
 
 //evalutates expression based on operator
 function operate(op, a, b) {
+    console.log(`${a}, ${b}`)
     switch(op){
         case "+":
             return add(a,b);
@@ -48,9 +52,13 @@ function operate(op, a, b) {
 }
 
 function concatDigit(e){
-    if(opSet && !rightStarted) {
+    if(state === "init" || state ==="display-ans") {
+        clearAll();
+        state ="input-left"
+    }
+    if(state === "input-mid") {
         clearDisplay();
-        rightStarted = true;
+        state ="input-right"
     }
     const pressed = e.target;
     let number = pressed.value;
@@ -58,9 +66,13 @@ function concatDigit(e){
 }
 
 function concatDec(e){
-    if(opSet && !rightStarted) {
+    if(state === "init" || state ==="display-ans") {
+        clearAll();
+        state ="input-left"
+    }
+    if(state === "input-mid") {
         clearDisplay();
-        rightStarted = true;
+        state ="input-right"
     }
     if(!display.innerHTML.includes("."));
         display.innerHTML = display.innerHTML + ".";
@@ -84,7 +96,11 @@ function clearAll(e) {
 }
 
 function evaluate (){
+    if(!opSet)
+        return "";
     ans = operate(operator, leftNum, rightNum)
+    if (ans === "Div by zero")
+        resetValues();
     console.log(ans);
     return ans;
 }
@@ -98,31 +114,43 @@ function inputNum() {
         num = parseFloat(input);
     else
         num = parseInt(input);
-    if(leftNum === undefined)
+    if(state === "input-left" || state === "display-ans"){
         leftNum = num;
-    else
+        console.log(num);
+    }
+    else if(state==="input-right")
         rightNum = num;
 }
 
 //sets the operator based on button pressed
 function setOperator(e) {
+    if(display.innerHTML === "")
+        return;
     //evaluates expression if rightNum is defined
-    if(rightStarted){
+    if(state === "input-right"){
         inputNum();
         let answer = evaluate();
         resetValues();
         display.innerHTML = answer;
         leftNum = answer;
+        state === "display-ans";
     }
-    inputNum();
+    if(state  === "input-left" || state === "display-ans")
+    {
+        inputNum();
+        state = "input-mid";
+    }
     const pressed = e.target;
     operator = pressed.value;
     opSet = true;
 }
  
 function completeExpression(e) {
-    inputNum();
-    display.innerHTML = evaluate();
-    resetValues();
-    inputNum();
+    if(state === "input-right"){
+        inputNum();
+        display.innerHTML = evaluate();
+        resetValues();
+        inputNum();
+        state = "display-ans";
+    }
 }
