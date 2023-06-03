@@ -1,5 +1,4 @@
 * {
-    border: 2px solid black;
 }
 
 body {
@@ -19,6 +18,10 @@ body {
     flex-shrink: 1;
 }
 
+label, button, #calc {
+    border: 2px solid black
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -26,11 +29,19 @@ body {
     flex: 1 1 auto;
     gap: 25px;
     flex-shrink: 1;
+    height: 30px
 }
 
 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1 1 auto;
+    font-size: 40px;
+    height: 100%;
+    width: 40px;
 }
+
 
 label {
     flex: 1 1 auto;
@@ -46,4 +57,5 @@ label span{
     right: 0;
     font-size: 30px;
     font-size: 4.5em;
+    height: 100%
 }
