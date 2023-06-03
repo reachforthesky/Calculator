@@ -59,3 +59,11 @@ label span{
     font-size: 4.5em;
     height: 100%
 }
+
+.oper {
+    background-color: red;
+}
+
+#eq {
+    background-color: darkgrey;
+}
