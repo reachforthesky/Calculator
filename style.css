@@ -9,8 +9,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 400px;
-    height: 600px;
+    width: min(400px, 90vw);
+    height: min(90vh,600px);
     flex: 0 1 auto;
     padding: 25px;
     gap: 25px;
@@ -56,11 +56,11 @@ label span{
     bottom: 0;
     right: 0;
     font-size: 30px;
-    font-size: 4.5em;
+    font-size: min(4.5em, 9vh, 14vw);
     height: 100%
 }
 
-.oper {
+.oper, #clear{
     background-color: red;
 }
 
